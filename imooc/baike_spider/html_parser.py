@@ -25,7 +25,7 @@ class HtmlParser( object ):
 		links = soup.find_all('a', href = re.compile(r'/item/.+'))
 		for link in links:
 			new_url = link['href']
-			new_full_url = urllib.parse.urljoin(page_url, new_url)
+			new_full_url = urllib.parse.urljoin(page_url, new_url)#将new_url按page_url格式拼接成一个完整的url
 			new_urls.add(new_full_url)
 		return new_urls
 
@@ -42,7 +42,7 @@ class HtmlParser( object ):
 			<div class="para" label-module="para">Python是一种计算机程序设计语言。是一种动态的、面向对象的脚本语言，最初被设计用于编写自动化脚本(shell)，随着版本的不断更新和语言新功能的添加，越来越多被用于独立的、大型项目的开发。</div>
 		</div>
 		"""
-		summary_node = soup.find('div', class_ = "lemma-summary").find('div', class_ = "para")
+		summary_node = soup.find('div', class_ = "lemma-summary")
 		res_data['summary'] = summary_node.get_text()
 		return  res_data
 
